@@ -1,0 +1,109 @@
+<!--
+(C) Copyright 2015 Nuxeo SA (http://nuxeo.com/) and contributors.
+
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the GNU Lesser General Public License
+(LGPL) version 2.1 which accompanies this distribution, and is available at
+http://www.gnu.org/licenses/lgpl.html
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+Lesser General Public License for more details.
+
+Contributors:
+  Nelson Silva <nsilva@nuxeo.com>
+  Andre Justo <ajusto@nuxeo.com>
+-->
+<link rel="import" href="nuxeo-select2.html">
+
+<!--
+`nuxeo-directory-suggestion`
+
+    <nuxeo-directory-suggestion></nuxeo-directory-suggestion>
+
+@group Nuxeo Widgets
+@element nuxeo-directory-suggestion
+@demo demo/nuxeo-widgets.html
+@homepage http://www.nuxeo.org
+-->
+<dom-module id="nuxeo-directory-suggestion">
+<template>
+  <nuxeo-select2 operation="Directory.SuggestEntries"
+                 min-chars="[[minChars]]"
+                 multiple="[[multiple]]"
+                 params="[[params]]"
+                 placeholder="[[placeholder]]"
+                 read-only="[[readOnly]]"
+                 value="{{value}}"
+                 selected-items="{{selectedItems}}">
+  </nuxeo-select2>
+
+  <template is="dom-if" if="[[label]]"><span>[[label]]</span> : </template>
+
+</template>
+<script>
+Polymer({
+  is: 'nuxeo-directory-suggestion',
+  properties: {
+
+    /**
+     * Name of the directory.
+     */
+    directoryName: {
+      type: String
+    },
+
+    /**
+     * Checking this option means that the labels are localized with translations provided
+     * in the directory itself (i.e. in fields). Otherwise labels are translated as usual
+     * picking values in messages*.properties files.
+     */
+    dbl10n: {type: Boolean, value: false},
+
+    label: String,
+
+    params: {
+      type: Object,
+      computed: 'computeParams(directoryName, dbl10n)'
+    },
+
+    value: {
+      type: String,
+      notify: true
+    },
+
+    multiple: {
+      type: Boolean,
+      value: false
+    },
+
+    readOnly: {
+      type: Boolean,
+      value: false
+    },
+
+    minChars: {
+      type: Number,
+      value: 3
+    },
+
+    placeholder: String,
+
+    selectedItems: {
+      type: Object,
+      notify: true
+    }
+  },
+
+  computeParams: function() {
+    return this.params = {
+      directoryName: this.directoryName,
+      dbl10n: this.dbl10n,
+      localize : true
+    };
+  }
+
+});
+</script>
+</dom-module>

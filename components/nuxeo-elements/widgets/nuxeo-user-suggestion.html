@@ -1,0 +1,102 @@
+<!--
+(C) Copyright 2015 Nuxeo SA (http://nuxeo.com/) and contributors.
+
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the GNU Lesser General Public License
+(LGPL) version 2.1 which accompanies this distribution, and is available at
+http://www.gnu.org/licenses/lgpl.html
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+Lesser General Public License for more details.
+
+Contributors:
+  Nelson Silva <nsilva@nuxeo.com>
+  Andre Justo <ajusto@nuxeo.com>
+-->
+<link rel="import" href="nuxeo-select2.html">
+
+<!--
+`nuxeo-user-suggestion`
+
+    <nuxeo-user-suggestion></nuxeo-user-suggestion>
+
+@group Nuxeo Widgets
+@element nuxeo-user-suggestion
+@demo demo/nuxeo-widgets.html
+@homepage http://www.nuxeo.org
+-->
+<dom-module id="nuxeo-user-suggestion">
+<template>
+  <nuxeo-select2 operation="UserGroup.Suggestion"
+                 min-chars="[[minChars]]"
+                 multiple="[[multiple]]"
+                 params="[[params]]"
+                 placeholder="[[placeholder]]"
+                 read-only="[[readOnly]]"
+                 value="{{value}}"
+                 selected-items="{{selectedItems}}"
+                 result-formatter="[[resultFormatter]]">
+  </nuxeo-select2>
+
+  <template is="dom-if" if="[[label]]"><span>[[label]]</span> : </template>
+
+</template>
+<script>
+Polymer({
+  is: 'nuxeo-user-suggestion',
+  properties: {
+
+    // USER_TYPE or GROUP_TYPE or USER_GROUP_TYPE
+    searchType: {
+      type: String,
+      value: 'USER_GROUP_TYPE'
+    },
+
+    label: String,
+
+    params: {
+      type: Object,
+      computed: 'computeParams(searchType)'
+    },
+
+    value: {
+      type: String,
+      notify: true
+    },
+
+    multiple: {
+      type: Boolean,
+      value: false
+    },
+
+    readOnly: {
+      type: Boolean,
+      value: false
+    },
+
+    minChars: {
+      type: Number,
+      value: 3
+    },
+
+    placeholder: String,
+
+    selectedItems: {
+      type: Object,
+      notify: true
+    },
+
+    resultFormatter: Function
+  },
+
+  computeParams: function() {
+    return this.params = {
+      searchType: this.searchType
+    };
+  }
+
+});
+</script>
+</dom-module>
