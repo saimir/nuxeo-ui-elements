@@ -28,6 +28,8 @@
     "iron-elements": "PolymerElements/iron-elements#^1.0.0",
     "paper-elements": "PolymerElements/paper-elements#^1.0.1",
     "nuxeo-elements": "nuxeo/nuxeo-elements#master",
+    "gold-email-input": "PolymerElements/gold-email-input#^1.0.6",
+    "better-dateinput-polyfill": "1.5.2",
     "moment": "~2.10.6",
     "d3": "~3.5.12",
     "randomcolor": "~0.4.2",
@@ -37,11 +39,11 @@
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
     "web-component-tester": "^4.0.0"
   },
-  "_release": "c2edc24164",
+  "_release": "cd661dc55f",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "c2edc241647fd7e3ecb50f9750f65fe387ca3ed0"
+    "commit": "cd661dc55fe8edb9f68ed2ac5fa04a118cf86f01"
   },
   "_source": "git://github.com/nuxeo/nuxeo-ui-elements.git",
   "_target": "master",
