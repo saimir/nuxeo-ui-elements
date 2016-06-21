@@ -22,12 +22,12 @@
     "build"
   ],
   "homepage": "https://github.com/videojs/video.js",
-  "version": "5.10.5",
-  "_release": "5.10.5",
+  "version": "5.10.6",
+  "_release": "5.10.6",
   "_resolution": {
     "type": "version",
-    "tag": "v5.10.5",
-    "commit": "e4a9938e63e03b55aa3623dcb91a3c65c18a830f"
+    "tag": "v5.10.6",
+    "commit": "111f141695035385b7844220001b983b79e6e7c5"
   },
   "_source": "https://github.com/videojs/video.js.git",
   "_target": "~5.10.2",
