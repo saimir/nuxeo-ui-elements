@@ -3,6 +3,10 @@
 <dom-module id="nuxeo-data-table-settings">
   <template>
     <style is="custom-style">
+      :host {
+        position: relative;
+      }
+
       paper-icon-button {
         position: absolute;
         top: 8px;
@@ -23,10 +27,10 @@
               <label></label>
             </div>
             <table>
-              <template is="dom-repeat" items="{{columns}}" as="column">
+              <template is="dom-repeat" items="[[columns]]" as="column">
                 <tr>
                   <td>
-                    <paper-checkbox checked="{{!column.hidden}}" on-tap="_columnDisplayTap">
+                    <paper-checkbox checked="{{!column.hidden}}" on-tap="_columnDisplayChanged">
                     </paper-checkbox>
                   </td>
                   <td>
@@ -39,7 +43,8 @@
         </div>
       </div>
       <div class="buttons sep">
-       <paper-button dialog-dismiss>Close</paper-button>
+       <paper-button on-tap="_resetSettings">[[i18n('label.datatable.column_settings.reset', 'Reset')]]</paper-button>
+       <paper-button dialog-dismiss>[[i18n('label.datatable.column_settings.close', 'Close')]]</paper-button>
       </div>
     </paper-dialog>
 
@@ -65,8 +70,15 @@
         this.$$('#columnsSettingsPopup').toggle();
       },
 
-      _columnDisplayTap: function() {
+      _columnDisplayChanged: function() {
         this.fire('tableSettingsChanged');
+      },
+
+      _resetSettings: function() {
+        this.columns.forEach(function(column, idx) {
+          this.set('columns.' + idx + '.hidden', column.hiddenBack);
+        }, this);
+        this._columnDisplayChanged();
       }
 
     });

@@ -80,9 +80,6 @@ Example:
         @apply(--nuxeo-data-table);
       }
 
-      #scrollTheshold {
-      }
-
       #container {
         position: absolute;
         left: 0;
@@ -296,10 +293,17 @@ Example:
           if (info.addedNodes.filter(hasColumns).length > 0 ||
             info.removedNodes.filter(hasColumns).length > 0) {
             this.set('columns', this.getContentChildren('[select=nuxeo-data-table-column]'));
+            this._backupColumnsState();
             this.notifyResize();
           }
 
         }.bind(this));
+      },
+
+      _backupColumnsState: function() {
+        this.columns.forEach(function(col) {
+          col.hiddenBack = col.hidden;
+        });
       },
 
       ready: function() {
@@ -459,9 +463,11 @@ Example:
       set settings(settings) {
         if (settings) {
           if (this.columns && settings.columns) {
-            this.columns.forEach(function(column) {
-              column.set('hidden', settings.columns[column.name].hidden);
-            });
+            this.columns.forEach(function(column, idx) {
+              if (settings.columns[column.name]) {
+                this.set('columns.' + idx + '.hidden', settings.columns[column.name].hidden);
+              }
+            }, this);
           }
         }
       }
