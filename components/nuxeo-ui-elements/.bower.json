@@ -39,11 +39,11 @@
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
     "web-component-tester": "^4.0.0"
   },
-  "_release": "800b91b409",
+  "_release": "0248fe48d3",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "800b91b409b44d4f64fd1e8471352b92b1b41b6f"
+    "commit": "0248fe48d39bb68d82fbfa2200d31216f822f86a"
   },
   "_source": "git://github.com/nuxeo/nuxeo-ui-elements.git",
   "_target": "master",
